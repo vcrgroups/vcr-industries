@@ -1,0 +1,518 @@
+diff --git a/app/layout.js b/app/layout.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/layout.js
+@@ -0,0 +1,200 @@
++import './globals.css'
++import Header from '../components/Header'
++import Footer from '../components/Footer'
++
++export const metadata = {
++  title: 'VCR Group of Industries',
++  description: 'Diversified industrial group: water, PET, beverages, soap, construction materials, transport and finance.'
++}
++
++export default function RootLayout({ children }) {
++  return (
++    <html lang="en">
++      <body className="bg-white text-slate-900 antialiased">
++        <Header />
++        <main className="min-h-screen">
++          {children}
++        </main>
++        <Footer />
++      </body>
++    </html>
++  )
++}
++
+diff --git a/app/globals.css b/app/globals.css
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/globals.css
+@@ -0,0 +1,200 @@
++@tailwind base;
++@tailwind components;
++@tailwind utilities;
++
++:root {
++  --gold: #d4af37;
++  --vcrblack: #071018;
++}
++
++body {
++  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
++}
++
++.container {
++  max-width: 1200px;
++  margin: 0 auto;
++  padding: 1.25rem;
++}
++
++/* small helpers */
++.btn-gold { background: var(--gold); color: #061018; padding: .5rem 1rem; border-radius: .5rem; }
++.hero-placeholder { height: 20rem; background: linear-gradient(90deg,#f3f4f6,#e6edf3); display:flex; align-items:center; justify-content:center; color:#94a3b8; border-radius:.5rem; }
++
+diff --git a/app/page.js b/app/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/page.js
+@@ -0,0 +1,250 @@
++import Link from 'next/link'
++
++export default function Home(){
++  const divisions = [
++    {slug:'water', title:'Packaged Drinking Water'},
++    {slug:'pet', title:'PET Bottle Manufacturing'},
++    {slug:'drinks', title:'Cool Drinks & Soda'},
++    {slug:'soap', title:'Soap & Hygiene'},
++    {slug:'fencing', title:'Metal Fencing Rolls'},
++    {slug:'bricks', title:'Blue Metal, Sand & Bricks'},
++    {slug:'transport', title:'Rental Transport'},
++    {slug:'finance', title:'Vehicle Financing'},
++    {slug:'rentals', title:'Rental Buildings'},
++    {slug:'construction', title:'Engineering & Construction'},
++  ]
++  return (
++    <div>
++      <section className="bg-gradient-to-r from-slate-50 to-white py-12">
++        <div className="container grid md:grid-cols-2 gap-8 items-center">
++          <div>
++            <h2 className="text-4xl font-extrabold">Building livelihoods. Bottling purity. Powering industry.</h2>
++            <p className="text-gray-600 mt-4">VCR Group of Industries is a diversified industrial conglomerate operating across water packaging, PET manufacturing, beverages, personal care, construction materials, transport, finance and real estate.</p>
++            <div className="mt-6 flex gap-3">
++              <Link href="/about" className="px-4 py-2 border rounded">Learn Our Story</Link>
++              <Link href="/contact" className="px-4 py-2 btn-gold">Contact Sales</Link>
++            </div>
++            <div className="mt-6 flex gap-4">
++              <div className="bg-white p-4 rounded shadow"><strong>12+</strong><div className="text-sm text-gray-500">Years</div></div>
++              <div className="bg-white p-4 rounded shadow"><strong>10</strong><div className="text-sm text-gray-500">Divisions</div></div>
++              <div className="bg-white p-4 rounded shadow"><strong>120+</strong><div className="text-sm text-gray-500">Employees</div></div>
++            </div>
++          </div>
++          <div className="rounded-lg overflow-hidden">
++            <div className="hero-placeholder">Hero image placeholder</div>
++          </div>
++        </div>
++      </section>
++
++      <section className="container py-12">
++        <h3 className="text-2xl font-bold">Our Divisions</h3>
++        <div className="grid md:grid-cols-3 gap-6 mt-6">
++          {divisions.map(d=>(
++            <Link href={`/divisions/${d.slug}`} key={d.slug} className="block p-4 border rounded hover:shadow">
++              <h4 className="font-semibold text-lg">{d.title}</h4>
++              <p className="text-sm text-gray-500 mt-2">Click to view details</p>
++            </Link>
++          ))}
++        </div>
++      </section>
++    </div>
++  )
++}
++
+diff --git a/app/about/page.js b/app/about/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/about/page.js
+@@ -0,0 +1,200 @@
++export default function About(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-3xl font-bold">About VCR Group of Industries</h1>
++      <p className="mt-4 text-gray-700">VCR Group is a family-led industrial group focused on delivering high-quality products and services across multiple sectors with an emphasis on safety, efficiency and sustainability.</p>
++
++      <section className="mt-8">
++        <h2 className="text-2xl font-semibold">Our Journey</h2>
++        <ol className="list-decimal pl-6 mt-3 text-gray-600">
++          <li>2012 — Founded with a single water bottling plant.</li>
++          <li>2015 — Expanded into PET manufacturing and beverage bottling.</li>
++          <li>2018 — Launched soap production and construction materials.</li>
++          <li>2021 — Diversified into transport, financing and rental properties.</li>
++          <li>2024 — Reached national distribution and ISO-aligned processes.</li>
++        </ol>
++      </section>
++    </div>
++  )
++}
++
+diff --git a/app/contact/page.js b/app/contact/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/contact/page.js
+@@ -0,0 +1,200 @@
++export default function Contact(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-3xl font-bold">Contact Us</h1>
++      <p className="mt-2 text-gray-600">For enquiries about supply, partnership or careers contact our central team.</p>
++      <div className="mt-6 grid md:grid-cols-2 gap-6">
++        <div>
++          <h3 className="font-semibold">Head Office</h3>
++          <p className="text-gray-600 mt-2">123 Industrial Park, City, Country</p>
++          <p className="mt-2">Phone: +123 456 7890</p>
++          <p>Email: info@vcrgroup.example</p>
++        </div>
++        <div>
++          <form onSubmit={(e)=>{e.preventDefault(); alert('Message sent (demo)')}} className="space-y-3">
++            <input className="w-full p-2 border rounded" placeholder="Name" required />
++            <input className="w-full p-2 border rounded" placeholder="Email" required />
++            <input className="w-full p-2 border rounded" placeholder="Company" />
++            <textarea className="w-full p-2 border rounded" placeholder="Message" rows="5" required></textarea>
++            <button className="px-4 py-2 btn-gold">Send Message</button>
++          </form>
++        </div>
++      </div>
++    </div>
++  )
++}
++
+diff --git a/app/privacy/page.js b/app/privacy/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/privacy/page.js
+@@ -0,0 +1,80 @@
++export default function Privacy(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-2xl font-bold">Privacy Policy (Sample)</h1>
++      <p className="mt-3 text-gray-600">This is a sample privacy policy. Replace with your legal policy as applicable.</p>
++    </div>
++  )
++}
++
+diff --git a/app/divisions/water/page.js b/app/divisions/water/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/divisions/water/page.js
+@@ -0,0 +1,140 @@
++export default function Page(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-2xl font-bold">Packaged Drinking Water</h1>
++      <p className="mt-3 text-gray-700">State-of-the-art water purification and bottling producing 200ml–1.5L bottles with strict quality standards.</p>
++      <section className="mt-6">
++        <h3 className="font-semibold">Capabilities & Services</h3>
++        <ul className="list-disc pl-6 mt-2 text-gray-600">
++          <li>Production capacity and quality assurance</li>
++          <li>Custom orders and private label</li>
++          <li>Supply chain and logistics support</li>
++        </ul>
++      </section>
++      <div className="mt-6">
++        <a href="/contact" className="px-4 py-2 btn-gold">Request a Quote</a>
++      </div>
++    </div>
++  )
++}
++
+diff --git a/app/divisions/pet/page.js b/app/divisions/pet/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/divisions/pet/page.js
+@@ -0,0 +1,140 @@
++export default function Page(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-2xl font-bold">PET Bottle Manufacturing</h1>
++      <p className="mt-3 text-gray-700">In-house PET preform production and blow-molding for food-grade bottles supporting our beverage clients.</p>
++      <section className="mt-6">
++        <h3 className="font-semibold">Capabilities & Services</h3>
++        <ul className="list-disc pl-6 mt-2 text-gray-600">
++          <li>Preform extrusion and blow moulding</li>
++          <li>PCR content options and quality testing</li>
++          <li>Tool & mould maintenance</li>
++        </ul>
++      </section>
++      <div className="mt-6">
++        <a href="/contact" className="px-4 py-2 btn-gold">Discuss Supply</a>
++      </div>
++    </div>
++  )
++}
++
+diff --git a/app/divisions/drinks/page.js b/app/divisions/drinks/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/divisions/drinks/page.js
+@@ -0,0 +1,140 @@
++export default function Page(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-2xl font-bold">Cool Drinks & Soda</h1>
++      <p className="mt-3 text-gray-700">Refreshing carbonated and non-carbonated beverages with customizable flavors for retail & bulk supply.</p>
++      <section className="mt-6">
++        <h3 className="font-semibold">Products & Packaging</h3>
++        <ul className="list-disc pl-6 mt-2 text-gray-600">
++          <li>Multiple SKUs: bottles and cans</li>
++          <li>Private label and co-packing available</li>
++          <li>HACCP-quality testing</li>
++        </ul>
++      </section>
++      <div className="mt-6">
++        <a href="/contact" className="px-4 py-2 btn-gold">Request Samples</a>
++      </div>
++    </div>
++  )
++}
++
+diff --git a/app/divisions/soap/page.js b/app/divisions/soap/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/divisions/soap/page.js
+@@ -0,0 +1,140 @@
++export default function Page(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-2xl font-bold">Soap & Hygiene Products</h1>
++      <p className="mt-3 text-gray-700">Bar soaps, liquid soaps, detergents and personal care solutions manufactured under hygienic conditions.</p>
++      <section className="mt-6">
++        <h3 className="font-semibold">Offerings</h3>
++        <ul className="list-disc pl-6 mt-2 text-gray-600">
++          <li>Private label manufacture</li>
++          <li>Bulk detergent and formulation services</li>
++          <li>Quality assurance and pH/microbial checks</li>
++        </ul>
++      </section>
++      <div className="mt-6">
++        <a href="/contact" className="px-4 py-2 btn-gold">Request Specs</a>
++      </div>
++    </div>
++  )
++}
++
+diff --git a/app/divisions/fencing/page.js b/app/divisions/fencing/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/divisions/fencing/page.js
+@@ -0,0 +1,120 @@
++export default function Page(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-2xl font-bold">Metal Fencing Rolls</h1>
++      <p className="mt-3 text-gray-700">Durable rolled metal fencing and galvanised wire used in agriculture, construction and security.</p>
++      <section className="mt-6">
++        <h3 className="font-semibold">Specs</h3>
++        <ul className="list-disc pl-6 mt-2 text-gray-600">
++          <li>Roll widths and coatings per spec</li>
++          <li>Bulk shipment and export packaging</li>
++        </ul>
++      </section>
++      <div className="mt-6">
++        <a href="/contact" className="px-4 py-2 btn-gold">Request Quotation</a>
++      </div>
++    </div>
++  )
++}
++
+diff --git a/app/divisions/bricks/page.js b/app/divisions/bricks/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/divisions/bricks/page.js
+@@ -0,0 +1,120 @@
++export default function Page(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-2xl font-bold">Blue Metal, Sand & Bricks</h1>
++      <p className="mt-3 text-gray-700">Quarry-sourced aggregates, manufactured bricks, and construction-grade sand supplied to contractors.</p>
++      <section className="mt-6">
++        <h3 className="font-semibold">Materials & Logistics</h3>
++        <ul className="list-disc pl-6 mt-2 text-gray-600">
++          <li>Bulk delivery by tipper trucks</li>
++          <li>Custom crushing and grading</li>
++        </ul>
++      </section>
++      <div className="mt-6">
++        <a href="/contact" className="px-4 py-2 btn-gold">Request Delivery</a>
++      </div>
++    </div>
++  )
++}
++
+diff --git a/app/divisions/transport/page.js b/app/divisions/transport/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/divisions/transport/page.js
+@@ -0,0 +1,120 @@
++export default function Page(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-2xl font-bold">Rental Transport</h1>
++      <p className="mt-3 text-gray-700">Fleet of light and heavy vehicles for hire — short-term rentals, long-term contracts and logistic support.</p>
++      <section className="mt-6">
++        <h3 className="font-semibold">Services</h3>
++        <ul className="list-disc pl-6 mt-2 text-gray-600">
++          <li>Short-term & long-term rentals</li>
++          <li>Driver + vehicle packages</li>
++        </ul>
++      </section>
++      <div className="mt-6">
++        <a href="/contact" className="px-4 py-2 btn-gold">Book a Vehicle</a>
++      </div>
++    </div>
++  )
++}
++
+diff --git a/app/divisions/finance/page.js b/app/divisions/finance/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/divisions/finance/page.js
+@@ -0,0 +1,120 @@
++export default function Page(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-2xl font-bold">Vehicle Financing</h1>
++      <p className="mt-3 text-gray-700">Flexible financing solutions for fleet purchases and commercial transport operators with competitive terms.</p>
++      <section className="mt-6">
++        <h3 className="font-semibold">Programs</h3>
++        <ul className="list-disc pl-6 mt-2 text-gray-600">
++          <li>Term loans & hire purchase</li>
++          <li>Leasing and fleet renewal plans</li>
++        </ul>
++      </section>
++      <div className="mt-6">
++        <a href="/contact" className="px-4 py-2 btn-gold">Apply Now</a>
++      </div>
++    </div>
++  )
++}
++
+diff --git a/app/divisions/rentals/page.js b/app/divisions/rentals/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/divisions/rentals/page.js
+@@ -0,0 +1,120 @@
++export default function Page(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-2xl font-bold">Rental Buildings & Real Estate</h1>
++      <p className="mt-3 text-gray-700">Commercial and industrial spaces for lease, managed professionally with maintenance and tenant services.</p>
++      <section className="mt-6">
++        <h3 className="font-semibold">Offerings</h3>
++        <ul className="list-disc pl-6 mt-2 text-gray-600">
++          <li>Short & long-term leasing</li>
++          <li>Property maintenance and tenant services</li>
++        </ul>
++      </section>
++      <div className="mt-6">
++        <a href="/contact" className="px-4 py-2 btn-gold">Enquire About Space</a>
++      </div>
++    </div>
++  )
++}
++
+diff --git a/app/divisions/construction/page.js b/app/divisions/construction/page.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/app/divisions/construction/page.js
+@@ -0,0 +1,120 @@
++export default function Page(){
++  return (
++    <div className="container py-12">
++      <h1 className="text-2xl font-bold">Engineering & Construction</h1>
++      <p className="mt-3 text-gray-700">Turnkey civil projects — from foundations and structures to finishing and project management services.</p>
++      <section className="mt-6">
++        <h3 className="font-semibold">Services</h3>
++        <ul className="list-disc pl-6 mt-2 text-gray-600">
++          <li>Earthworks, foundations, structural work</li>
++          <li>Contracting for industrial and commercial buildings</li>
++        </ul>
++      </section>
++      <div className="mt-6">
++        <a href="/contact" className="px-4 py-2 btn-gold">Discuss a Project</a>
++      </div>
++    </div>
++  )
++}
++
+diff --git a/components/Header.js b/components/Header.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/components/Header.js
+@@ -0,0 +1,200 @@
++import Link from 'next/link'
++
++export default function Header(){
++  return (
++    <header className="bg-white border-b">
++      <div className="container flex items-center justify-between py-4">
++        <Link href="/" className="flex items-center gap-3">
++          <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-xl font-bold">VCR</div>
++          <div>
++            <h1 className="text-lg font-semibold">VCR Group of Industries</h1>
++            <p className="text-sm text-gray-500">Quality • Innovation • Sustainability</p>
++          </div>
++        </Link>
++
++        <nav>
++          <ul className="flex items-center gap-4 text-sm">
++            <li><Link href="/about">About</Link></li>
++            <li><Link href="/divisions/water">Divisions</Link></li>
++            <li><Link href="/contact" className="px-3 py-2 bg-gold text-black rounded">Contact</Link></li>
++          </ul>
++        </nav>
++      </div>
++    </header>
++  )
++}
++
+diff --git a/components/Footer.js b/components/Footer.js
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/components/Footer.js
+@@ -0,0 +1,220 @@
++export default function Footer(){
++  return (
++    <footer className="bg-vcrblack text-white mt-12">
++      <div className="container py-8 grid grid-cols-1 md:grid-cols-3 gap-6">
++        <div>
++          <h4 className="text-lg font-semibold">VCR Group of Industries</h4>
++          <p className="text-sm mt-2">123 Industrial Park, City, Country<br/>Phone: +123 456 7890<br/>Email: info@vcrgroup.example</p>
++        </div>
++        <div>
++          <h5 className="font-semibold">Quick Links</h5>
++          <ul className="mt-2 text-sm space-y-2">
++            <li>About</li>
++            <li>Contact</li>
++            <li>Privacy</li>
++          </ul>
++        </div>
++        <div>
++          <h5 className="font-semibold">Subscribe</h5>
++          <form onSubmit={(e)=>{e.preventDefault(); alert('Subscribed (demo)')}} className="mt-2">
++            <input className="w-full p-2 rounded text-black" placeholder="Your email" />
++            <button className="mt-2 px-4 py-2 bg-gold rounded text-black">Subscribe</button>
++          </form>
++        </div>
++      </div>
++      <div className="bg-black/30 text-center py-3 text-sm">© 2025 VCR Group of Industries. All rights reserved.</div>
++    </footer>
++  )
++}
++
+diff --git a/public/images/.gitkeep b/public/images/.gitkeep
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/public/images/.gitkeep
+@@ -0,0 +1,1 @@
++keep
